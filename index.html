@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Real Time with Websockets</title>
+
+		<meta name="description" content="A presentation about building bidirectional communication using the new HTML5 Websocket API">
+		<meta name="author" content="Andrew Lombardi">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="reveal.js/css/reveal.min.css">
+		<link rel="stylesheet" href="reveal.js/css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="css/reset.css">
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+		<link rel="stylesheet" href="reveal.js-fullscreen-img/fullscreen-img.css" />
+
+		<style>
+			.button {
+				-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+				-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+				box-shadow:inset 0px 1px 0px 0px #ffffff;
+				background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+				background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+				background-color:#ededed;
+				-moz-border-radius:6px;
+				-webkit-border-radius:6px;
+				border-radius:6px;
+				border:1px solid #dcdcdc;
+				display:inline-block;
+				color:#777777;
+				font-family:arial;
+				font-size:15px;
+				font-weight:bold;
+				padding:6px 24px;
+				text-decoration:none;
+				text-shadow:1px 1px 0px #ffffff;
+			}.button:hover {
+				background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+				background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+				background-color:#dfdfdf;
+			}.button:active {
+				position:relative;
+				top:1px;
+			}
+
+
+			table { border-collapse: collapse;
+			font-family: Futura, Arial, sans-serif; }
+			.reveal th, td { padding: 1em; }
+			.reveal th, .reveal thead { background: #000; color: #fff; border: 1px solid #fff; }
+			/*.reveal tr:nth-child(odd) { background: #ccc; }*/
+			.reveal tr:hover { background: #aaa; }
+			.reveal td { border: 1px solid #777; }
+			.reveal th { font-size: 0.75em;}
+			.reveal td { font-size: 0.5em; font-weight: normal; padding: 1em;}
+			.reveal table { border: 1px solid #777; }
+
+		</style>
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			//document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+
+
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="reveal.js/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+				    <img src="images/titanium_logo.png" />
+
+					<h2>Real Time with Websockets</h2>
+					<p>
+						<small><a href="http://mysticcoders.com">Andrew Lombardi</a> / <a href="http://twitter.com/kinabalu">@kinabalu</a></small>
+					</p>
+					<p>
+						<small><a href="http://mysticcoders.com">Mystic Coders, LLC</a></small>
+					</p>
+				</section>
+
+				<section>
+					<section>
+						<h2>About Me</h2>
+						<img src="images/me_and_jd.png" />
+						<aside class="notes">
+							Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+						</aside>						
+					</section>
+					<section>
+						<h2>About Me</h2>
+						<p class="fragment">13 Years in Business</p>
+						<p class="fragment">Software Consultants</p>
+						<p class="fragment">International Speakers</p>
+						<p class="fragment">Training</p>
+						<p class="fragment">App Developer (JavaScript, Objective-C, Java)</p>
+						<p>&nbsp;</p>
+						<p class="fragment"><strong>To our success!</strong></p>
+					</section>
+				</section>
+				<section fullscreen-img="images/skydiving.png" />
+				</section>	
+				<section fullscreen-img="images/snow_angel.jpg" />
+				</section>	
+				<section>
+				    <img src="images/titanium_logo.png" />
+
+					<p>
+						<strong>Titanium</strong> is an open source framework for building <strong>mobile</strong> applications using <strong>Javascript</strong>.
+					</p>
+				</section>
+				<section>
+					<h2>Corporate Slide</h2>
+					<img src="images/logos/ebay_logo.png" border="0" />
+					<img src="images/logos/merck_logo.png" border="0" />
+					<img src="images/logos/nbcuniversal_logo.png" border="0" />
+					<img src="images/logos/razorfish_logo.png" border="0" />
+					<img src="images/logos/zipcar_logo.png" border="0" />
+					<img src="images/logos/bestfit_logo.png" border="0" />
+				</section>
+				<section>
+					<h2>What is it good for?</h2>
+					<p>Data-driven web service clients</p>
+					<p>Web service mash-ups</p>
+					<p>Social utilities</p>
+					<p>Casual games</p>
+				</section>				
+				<section>
+					<h2>Mobile Architecture</h2>
+					<img src="images/titanium_app_flow.png" border="0" />
+				</section>
+				<section>
+					<h2>Titanium Fundamentals</h2>
+					<ul>
+						<li>A Titanium application is a JavaScript program that is interpreted at runtime on the device</li>
+						<li><strong>app.js</strong> = root execution context of the app</li>
+						<li>No browser involved / WebView</li>
+						<li>We use the WebKit KJS JavaScript engine (iOS) or Rhino (Android/BB)</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Titanium Javascript API</h2>
+					<ul>
+						<li>Organized into logical namespaces</li>
+						<li>“Titanium” (or just “Ti” for short) is the root namespace for all Titanium functionality</li>
+						<li>A few other odds and ends in the global space
+ 							<ul>
+ 								<li>setTimeout/setInterval</li>
+ 								<li>alert</li>
+ 								<li>JSON</li>
+ 							</ul>
+ 						</li>
+ 					</ul>
+				</section>
+				<section>
+					<h3>Download Appcelerator Titanium</h3>
+					<img src="images/titanium_signup_webpage.png" border="0" />
+				</section>
+				<section>
+					<h3>Become an Apple iOS Developer</h3>
+					<img src="images/apple_developer_signup.png" border="0" />
+				</section>
+				<section>
+					<h3>Become a Google Play Developer</h3>
+					<img src="images/google_developer_signup.png" border="0" />
+				</section>
+				<section>
+					<h3>Become an Amazon Appstore Developer</h3>
+					<img src="images/amazon_developer_signup.png" border="0" />
+				</section>
+				<section>
+					<h1>Cost Breakdown</h1>
+					<table width="100%">
+						<thead>
+							<th>Store</th>
+							<th>Cost</th>
+						</thead>
+						<tbody>
+							<tr class="fragment"><td>iOS Developer</td><td>$99 USD/YR</td></tr>
+							<tr class="fragment"><td>Google Play Developer</td><td>$25 USD once</td></tr>
+							<tr class="fragment"><td>Amazon Appstore Developer</td><td>$99 USD/YR</td></tr>
+							<tr class="fragment"><td>All</td><td>30% of Sales</td></tr>
+						</tbody>
+					</table>
+				</section>
+				<section>
+					<section>
+						<h2>Titanium Studio</h2>
+						<img src="images/titanium_studio.png" border="0" />
+					</section>
+					<section>
+						<h2>Benefits</h2>
+						<p>Manage and run Titanium applications</p>
+						<p>Package applications for distribution</p>
+						<p>Run on a device for testing</p>
+						<p>Develop in derivative Eclipse editor Aptana</p>
+					</section>
+					<section>
+						<h2>Titanium Project in xCode</h2>
+						<img src="images/xcode_titanium_project.png" border="0" />
+					</section>
+					<section>
+						<h2>Offline Fail</h2>
+						<img src="images/titanium_logging_in.png" border="0" />
+					</section>
+					<section>
+						<h2>Titanium Studio</h2>
+						<p>Find the TitaniumStudio.ini file</p>
+						<ul style="font-size: 0.5em;">
+							<li>Windows<ul>
+								<li>Navigate to the location of your Studio application (likely under C:\Users\username\AppData\Local\Titanium Studio\)</li>
+								<li>Open TitaniumStudio.ini</li>
+								<li>Edit the options as desired, save and close the file</li>
+							</ul></li>
+							<li>OS X<ul>
+								<li>Navigate to the <strong>/Applications/Titanium Studio</strong> folder in Finder</li>
+								<li>Right-click (or control-click) on TitaniumStudio.app) and choose <strong>Show package contents</strong></li>
+								<li>Edit <strong>Contents/MacOS/TitaniumStudio.ini</strong>.  Add the options as desired, and save the file.
+							</ul></li>
+							<li>Linux<ul>
+								<li>Navigate to the location of your Studio application (it is wherever you unzipped the download)</li>
+								<li>Open TitaniumStudio.ini</li>
+								<li>Edit the options as desired, save and close the file</li>
+							</ul></li>
+						</ul>
+					</section>
+					<section>
+						<h2>Titanium Studio</h2>
+						<ul>
+							<li>Find the TitaniumStudio.ini file</li>
+							<li>No Debug</li>
+						</ul>
+						<img src="images/titanium_startup_ini.png" border="0" />
+					</section>
+					<section>
+						<h2>Titanium Studio</h2>
+						<img src="images/titanium_studio_offline_mode.png" border="0" />
+					</section>
+				</section>
+				<section>
+					<h2>Checking Memory</h2>
+<pre><code>
+var int=self.setInterval(function(){printMem()},1000);
+function printMem() {
+	Ti.API.debug(Ti.Platform.availableMemory);
+}	
+</code></pre>
+				</section>
+				<section>
+					<h2>Universal Apps</h2>
+<pre><code>if(Ti.Platform.osname === ”ipad”) {
+
+    Ti.include(‘app_ipad.js’);
+       
+} else {
+
+    Ti.include(‘app_iphone.js’);
+
+}	
+</code></pre>
+				</section>
+				<section>
+					<h2>Installing Command-Line Tools</h2>
+					<br />
+					<p>Installing NodeJS</p>
+					<p><small>On Windows: <a href="http://nodejs.org/dist/latest/node.exe">http://nodejs.org/dist/latest/node.exe</a></small></p>
+					<p><small>On Mac OS X: <a href="http://nodejs.org/dist/latest/">http://nodejs.org/dist/latest/</a></small></p>
+					<p><small>On Linux: <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager</a></small></p>
+					<p>Installing Titanium Runtime + Alloy</p>
+<pre><code>% npm install -g titanium
+% npm install -g alloy
+</code></pre>
+				</section>
+				<section>
+					<section>
+						<h2>Building Hello, World</h2>
+
+<pre><code>% titanium create \
+	--name=appname \
+	--id=com.mysticcoders.helloworld \
+	--platforms=android,ipad,iphone
+Titanium Command-Line Interface, CLI version 3.0.22, Titanium SDK version 3.0.0.GA
+Copyright (c) 2012, Appcelerator, Inc.  All Rights Reserved.
+
+Please report bugs to http://jira.appcelerator.org/
+
+[INFO] Creating Titanium Mobile application project
+[INFO] Project 'helloworld' created successfully in 84ms
+% cd helloworld
+% alloy new
+</code></pre>
+					</section>
+					<section>
+						<h2>Our View XML</h2>
+<pre><code>&lt;Alloy&gt;<br/>	&lt;Window class=&quot;container&quot;&gt;<br/>	&lt;Label id=&quot;label&quot; onClick=&quot;doClick&quot;&gt;Hello, World&lt;/Label&gt;<br/>	&lt;/Window&gt;<br/>&lt;/Alloy&gt;	
+</code></pre>					
+					</section>
+					<section>
+						<h2>Our View Stylesheet</h2>
+<pre><code>".container": {
+	backgroundColor:"white"
+},
+"Label": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	color: "#000"
+} 	
+</code></pre>					
+					</section>
+					<section>
+						<h2>Our Controller</h2>
+<pre><code>function doClick(e) {  
+    alert($.label.text);
+}
+
+$.index.open();
+</code></pre>					
+					</section>
+					<section>
+						<h1>DEMO</h1>
+					</section>
+					<section>
+						<h2>Android Hints</h2>
+						<p>Sometimes the adb server doesn't start, so you'll have to do it manually</p>
+<pre><code>adb start-server</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Alloy Fundamentals</h2>
+						<p class="fragment">Built on Backbone.js v0.9.2</p>
+						<p class="fragment">Underscore.js included</p>
+						<p class="fragment">Model / View / Controller</p>
+						<p class="fragment">Clear separation of concerns</p>
+						<p class="fragment">Conditional view / styles in View XML / TSS files</p>
+					</section>
+					<section>
+						<h2>Conditional View based on Device</h2>
+						<br />
+	<h3>Render for iPad</h3>
+	<pre><code>
+	&lt;Window class=&quot;container&quot; id=&quot;index&quot; platform=&quot;ios&quot; \
+		formFactor=&quot;tablet&quot;&gt;
+	</pre></code>
+	<h3>Render for iPhone</h3>
+	<pre><code>
+	&lt;Window id=&quot;index&quot; platform=&quot;ios&quot; formFactor=&quot;handheld&quot; \
+		barColor=&quot;#000&quot;&gt;<br/>	
+	</code></pre>
+
+					</section>					
+				</section>
+				<section>
+					<h1>DEMO</h1>
+				</section>
+				<section>
+					<h2>Write Once, Run Everywhere?</h2>
+					<h1 class="fragment">NO</h1>
+					<h2 class="fragment">Write Once, Adapt Everywhere</h2>
+				</section>				
+				<section>
+					<h2>Comparison with PhoneGap</h2>
+					<table>
+						<thead>
+							<th>&nbsp;</th>
+							<th>Titanium</th>
+							<th>PhoneGap</th>
+						</thead>
+						<tbody>
+							<tr><td>Platform</td><td>iOS, Android, Windows, Blackberry, HTML5</td><td>iOS, Android, WebOS, Windows, RIM, Symbian</td></tr>
+							<tr><td>Device HW</td><td>GPS, Vibration, Accelerometer, Compass, Camera, Microphone</td><td>GPS, Vibration, Accelerometer, Compass, Camera, Microphone</td></tr>
+							<tr><td>Native UI</td><td>Yes</td><td>No</td></tr>
+							<tr><td>Performance</td><td>Not as fast as native, but "good enough"</td><td>As fast as HTML / JavaScript on device</td><tr>
+						</tbody>
+					</table>
+				</section>	
+				<section>
+					<h2>Helpful Links</h2>
+					<p><a href="http://www.appcelerator.com">Appcelerator Titanium</a></p>
+					<p><a href="http://github.com/appcelerator">Titanium Source</a></p>
+					<p><a href="http://developer.appcelerator.com/training">Titanium Training</a></p>
+					<p><a href="http://developer.apple.com">Apple Developer Portal</a></p>
+					<p><a href="https://play.google.com/apps/publish">Google Play Developer</a></p>
+					<p><a href="https://developer.amazon.com/welcome.html">Amazon App Store for Android</a></p>
+				</section>
+				<section>
+					<h1>Q & A</h1>
+					<h3>Andrew Lombardi / <a href="http://www.twitter.com/kinabalu">@kinabalu</a></h3>
+					<p>
+						kinabalu @ <a href="irc://irc.freenode.net">irc://irc.freenode.net</a>
+					</p>
+					<p>
+						<small>#titanium_app, #javascript</small>
+					</p>
+					<p>
+						<small><a href="https://github.com/kinabalu/html5presentation">https://github.com/kinabalu/titaniumprez</a></small>
+					</p>
+
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="reveal.js/lib/js/head.min.js"></script>
+		<script src="reveal.js/js/reveal.min.js"></script>
+		<script src="js/underscore-min.js"></script>
+		<script>
+
+			var iframe_sections = [
+				// {'name': 'balloonshooter', 'url': 'balloonshooter/bubbles/index.html'},
+				// {'name': 'wolfenstein', 'url': 'http://www.nihilogic.dk/labs/wolf/'},
+				// {'name': 'html5_form', 'url': 'form.html'},
+				// {'name': 'geolocation', 'url': 'geolocation.html'},
+				// {'name': 'webgl', 'url': 'cube.html'}
+			];
+
+			Reveal.addEventListener( 'slidechanged', function( event ) {
+			    // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+
+				_.each(iframe_sections, function(id_name) {
+					name = id_name['name'];
+					url = id_name['url'];
+
+				    if(event.previousSlide && event.previousSlide.getAttribute('id')==name) {
+				    	document.getElementById(name+'_iframe').parentNode.removeChild(document.getElementById(name+'_iframe'));
+					}
+
+					if(event.currentSlide.getAttribute('id')==name) {
+						var iframe = document.createElement("iframe");
+						iframe.src = url;
+						iframe.id = name+'_iframe';
+						iframe.width = '100%';
+						iframe.height = '100%';
+						document.getElementById(name).appendChild(iframe);					
+					}
+				});
+			} );			
+			Reveal.addEventListener( 'overviewshown', function( event ) { 
+			} );
+		</script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'reveal.js-fullscreen-img/fullscreen-img.js' }
+					//{ src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+			/*
+			var canvas = document.getElementById('mystic_logo');
+			if (canvas.getContext) {
+				alert('canvas');
+				var context = canvas.getContext('2d');
+
+				var myImage = new Image();
+				myImage.onload = function() {
+				  canvas.setAttribute('width', myImage.width);
+				  canvas.setAttribute('height', myImage.height);
+				  context.drawImage(myImage, 0, 0);
+		          }
+			}
+			myImage.src = "images/mystic-logo-contracts.png";
+			*/
+		</script>
+
+	</body>
+</html>
