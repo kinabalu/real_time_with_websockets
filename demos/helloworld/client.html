@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WebSocket Echo Demo</title>
+    <script>
+        var ws = new WebSocket("ws://localhost:8181");
+        ws.onopen = function(e) {
+          console.log('Connection to server opened');
+        }            
+
+        function sendMessage() {
+           ws.send(document.getElementById('message').value);
+        }
+    </script>
+  </head>
+  <body>
+    <form onsubmit="sendMessage(); return false;">
+        <input type="text" name="message" style="width: 200px;" id="message" 
+          placeholder="Type text to echo in here" value="" autofocus/>
+        <input type="button" value="Send!" 
+          onclick="sendMessage();" />
+  </form>
+  </body>
+</html>

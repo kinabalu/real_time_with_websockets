@@ -4,3 +4,6 @@
 [submodule "reveal.js-fullscreen-img"]
 	path = reveal.js-fullscreen-img
 	url = git@github.com:regisb/reveal.js-fullscreen-img.git
+[submodule "demos/node_chat"]
+	path = demos/node_chat
+	url = git@github.com:rivalslayer/node_chat.git
