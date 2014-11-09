@@ -1,9 +1,9 @@
 [submodule "reveal.js"]
-	path = reveal.js
-	url = git@github.com:hakimel/reveal.js.git
+        path = reveal.js
+        url = https://github.com/hakimel/reveal.js.git
 [submodule "reveal.js-fullscreen-img"]
-	path = reveal.js-fullscreen-img
-	url = git@github.com:regisb/reveal.js-fullscreen-img.git
+        path = reveal.js-fullscreen-img
+        url = https://github.com/regisb/reveal.js-fullscreen-img.git
 [submodule "demos/node_chat"]
 	path = demos/node_chat
-	url = git@github.com:rivalslayer/node_chat.git
+	url = https://github.com/rivalslayer/node_chat.git
